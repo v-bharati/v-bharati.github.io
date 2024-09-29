@@ -1,0 +1,708 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CS180 Project 2</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="10f3b13b-f27a-804c-a2dc-f013d84cf14d" class="page sans"><header><h1 class="page-title">CS180 Project 2</h1><p class="page-description"></p></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="10f3b13b-f27a-80d2-8099-c53b27f6cadd"><div style="font-size:1.5em"><span class="icon">🛠</span></div><div style="width:100%"><h3 id="7ccfe77c-f11b-492a-9f91-4e622635659c" class="">Vivek Bharati</h3></div></figure><h2 id="10f3b13b-f27a-8079-9e0b-d2178f73f9d5" class="">Part 1</h2><p id="10f3b13b-f27a-80a7-996e-efdac1a9c0e7" class="">This part of the project explores taking derivatives and gradient-magnitudes of images. One can observe the effects of blurring (low-pass filtering) an image on its derivatives and gradient magnitudes.  </p><h3 id="10f3b13b-f27a-8023-994a-eb8a1bd71a3c" class="">1.1</h3><p id="10f3b13b-f27a-8035-b632-f74258b8a05d" class="">For the first part, I convolved the first channel of the input image (cameraman.png) with the finite difference operators. These convolutions simulate taking the derivative of the input image with respect to either x or y. The resulting images display where changes in value occur across the horizontal or vertical directions. </p><p id="10f3b13b-f27a-80e1-a00e-eea1eb9d72c4" class="">
+</p><figure id="10f3b13b-f27a-8096-ba6d-e26410cd0867" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/cameraman.png"><img style="width:528px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/cameraman.png"/></a><figcaption>Input Image (cameraman.png)</figcaption></figure><div id="10f3b13b-f27a-8027-9bc3-f7071d784793" class="column-list"><div id="10f3b13b-f27a-8006-8a97-e239b7e252d8" style="width:50%" class="column"><figure id="10f3b13b-f27a-80bf-8883-e14d5fe326b5" class="image" style="text-align:left"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1dx.jpg"><img style="width:331px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1dx.jpg"/></a><figcaption>Derivative with respect to x</figcaption></figure><p id="10f3b13b-f27a-8092-be2c-f7acdf21944f" class="">
+</p></div><div id="10f3b13b-f27a-80d8-9b12-e5bb2db3d7aa" style="width:50%" class="column"><figure id="10f3b13b-f27a-8070-8740-e433a5eb3a00" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1dy.jpg"><img style="width:331px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1dy.jpg"/></a><figcaption>Derivative with respect to y</figcaption></figure><p id="10f3b13b-f27a-8031-8167-d39f53d3c3f7" class="">
+</p></div></div><p id="10f3b13b-f27a-8047-8c28-e4847207f873" class="">Given the derivative images with respect to both the x and y directions, we can compute the gradient-magnitude image (given by the square root of Dx^2 + Dy^2). However, there was some noise in the gradient magnitude image. Therefore, I normalized the gradient magnitude image and binarized the image (only consider pixels greater than 0.2 in value on a scale from 0 to 1) to take out the noise. For gradient magnitude normalization, I subtracted the minimum value from the image and divided the entire image by the maximum value minus the minimum value. </p><div id="10f3b13b-f27a-809f-ab34-d79a87175ba0" class="column-list"><div id="10f3b13b-f27a-80ff-9961-f76ce9fb3370" style="width:50%" class="column"><figure id="10f3b13b-f27a-8072-9f40-c70be24f9420" class="image" style="text-align:left"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1_grad.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1_grad.jpg"/></a><figcaption>Gradient Magnitude Image</figcaption></figure><p id="10f3b13b-f27a-8050-872c-c312ba76a54e" class="">
+</p></div><div id="10f3b13b-f27a-8090-91f8-fbd26e3a6e7d" style="width:50%" class="column"><figure id="10f3b13b-f27a-8050-9ebb-ea393f4872b9" class="image" style="text-align:right"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1_binarized_grad.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.1_binarized_grad.jpg"/></a><figcaption>Binarized Magnitude Image (&gt; 0.2)</figcaption></figure><p id="10f3b13b-f27a-8058-a757-e0df63beae89" class="">
+</p></div></div><p id="10f3b13b-f27a-80ef-b17f-e0454e253384" class="">With a high screen brightness, one can see that binarizing the gradient magnitude image takes out some of the noise in the foreground (grass). However, the binarized image is still a bit noisy. </p><h3 id="10f3b13b-f27a-8084-9b63-cfd8809eb7cd" class="">1.2</h3><p id="10f3b13b-f27a-8050-abe5-c049c66f1ba5" class="">For this part, I used a Gaussian kernel to blur (low-pass filter) the input image. This way, there would be reduced noise in the derivative and gradient magnitude images. My kernel size was 15x15 with a standard deviation (sigma) of 2. This setup follows the convention of the kernel half-width being at least 3 times the standard deviation of the kernel. </p><div id="10f3b13b-f27a-807f-b255-d73e36e51e47" class="column-list"><div id="10f3b13b-f27a-80a5-8aab-dfda6158756c" style="width:50%" class="column"><figure id="10f3b13b-f27a-80f6-9e70-f2e171282af1" class="image" style="text-align:left"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dx.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dx.jpg"/></a><figcaption>Derivative with respect to x (blurred input)</figcaption></figure><figure id="10f3b13b-f27a-80ad-9f09-da1975d0a98c" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_grad.jpg"><img style="width:384px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_grad.jpg"/></a><figcaption>Gradient Magnitude Image (blurred input)</figcaption></figure></div><div id="10f3b13b-f27a-80e5-a874-cee897ca389c" style="width:50%" class="column"><figure id="10f3b13b-f27a-80a5-a72b-c94129e708f6" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dy.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dy.jpg"/></a><figcaption>Derivative with respect to y (blurred input)</figcaption></figure><figure id="10f3b13b-f27a-803f-91cf-d062f376f905" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_binarized_grad.jpg"><img style="width:331px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_binarized_grad.jpg"/></a><figcaption>Binarized Magnitude Image (&gt;0.07, blurred input)</figcaption></figure><p id="10f3b13b-f27a-805c-b0f7-f9f1faeca7e2" class="">
+</p></div></div><p id="10f3b13b-f27a-80d5-9129-ffd3b51e9273" class=""> As seen in the above pictures, the images for the respective operations are less noisy. For the binarized gradient magnitude image, I considered pixels with value &gt; 0.07 on a scale from 0 to 1. The binarized magnitude image has cleaner edges compared to the image derived from a non-blurred input. </p><p id="10f3b13b-f27a-80af-a0d8-f6e58140d35e" class="">
+</p><p id="10f3b13b-f27a-80c3-a539-fe8117b61b1b" class="">Now, instead of blurring the input first and then applying the finite difference operators, we can convolve the gaussian kernel with the finite difference operators first. This switch of operations is allowed by the associative property of convolution. Thus, we can convolve the input with the derivatives of the gaussian kernel (in x and y) to obtain the same results as above:</p><div id="10f3b13b-f27a-801c-b1fa-f8f0874feea9" class="column-list"><div id="10f3b13b-f27a-8012-a09b-de35ed03d17f" style="width:50%" class="column"><figure id="10f3b13b-f27a-808e-96ba-f38c4cf7f812" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dx_DoG.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dx_DoG.jpg"/></a><figcaption>Input convolved with Derivative of Gaussian (in x)</figcaption></figure></div><div id="10f3b13b-f27a-8013-a8c2-c37e0aaf9ece" style="width:50%" class="column"><figure id="10f3b13b-f27a-8063-8b3e-dd1501d43c91" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dy_DoG.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2dy_DoG.jpg"/></a><figcaption>Input convolved with Derivative of Gaussian (in x)</figcaption></figure><p id="10f3b13b-f27a-8096-a9c9-ea7bc3e26c83" class="">
+</p></div></div><div id="10f3b13b-f27a-8050-8d2e-e71797fa9d57" class="column-list"><div id="10f3b13b-f27a-80d5-871c-fcc19371ae98" style="width:50%" class="column"><figure id="10f3b13b-f27a-80ff-851f-d26efa6f6677" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_grad_DoG.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_grad_DoG.jpg"/></a><figcaption>Gradient Magnitude Image</figcaption></figure></div><div id="10f3b13b-f27a-8016-b59c-c418b05fdcb3" style="width:50%" class="column"><figure id="10f3b13b-f27a-808a-bdb3-cad1e2407a78" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_binarized_grad_DoG.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_binarized_grad_DoG.jpg"/></a><figcaption>Binarized Magnitude Image</figcaption></figure></div></div><p id="10f3b13b-f27a-80b2-bff4-d9b30d2b4930" class="">As seen above, the results are essentially identical to the previous results in 1.2. These results were obtained the following filters (for x and y):</p><div id="10f3b13b-f27a-808c-8507-f4039fa54056" class="column-list"><div id="10f3b13b-f27a-8074-8fd1-d29944144ff7" style="width:50%" class="column"><figure id="10f3b13b-f27a-80ff-9ab9-f0bf10603374" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_DoG_x.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_DoG_x.jpg"/></a><figcaption>Derivate of Gaussian (in x)</figcaption></figure></div><div id="10f3b13b-f27a-8047-9964-c13018342576" style="width:50%" class="column"><figure id="10f3b13b-f27a-8089-83d7-d668c5cd5bf7" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_DoG_y.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/1.2_DoG_y.jpg"/></a><figcaption>Derivative of Gaussian (in y)</figcaption></figure><p id="10f3b13b-f27a-8064-b79b-d3fe6858008d" class="">
+</p></div></div><h2 id="10f3b13b-f27a-808a-be4f-fadde14ebc5b" class="">Part 2</h2><p id="10f3b13b-f27a-8012-875b-ef1406c78b72" class="">This part of the project explores the power of frequencies with respect to image data. </p><h3 id="10f3b13b-f27a-80f8-8d4c-dd56467b535a" class="">2.1</h3><p id="10f3b13b-f27a-8081-8189-db3acd40598f" class="">For this part, I was tasked with image sharpening. The results of Part 1 showed that convolving an input image with a gaussian kernel results in a blurred image. This blurring relates to the low-pass filtering that a gaussian kernel does. The blurred image is the original image minus some higher frequency details (image sharpness). Therefore, we can derive an unsharp mask filter (image sharpening filter) using a gaussian kernel. If a gaussian kernel low-pass filters an image (i.e. takes away high frequency details), we can subtract the low-passed image from the original image to obtain the high frequency details. If we scale the high frequencies and add them back to the original image, we get an image that emphasizes sharpness. As a note, the high frequencies are scaled by a constant factor of ⍺. </p><p id="10f3b13b-f27a-8059-9ec4-dda83f045aad" class="">The first test image is one of the Taj Mahal. The unsharp mask filter described above was applied to each channel of the input image for best results. For all images in this part, I used a gaussian kernel with width 15 and standard deviation 2 for the unsharp mask filter. </p><p id="10f3b13b-f27a-80a0-956b-d1576d6a2402" class="">
+</p><figure id="10f3b13b-f27a-8045-9421-cabb40e6e8ad" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj.jpg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj.jpg"/></a><figcaption>Input (taj.jpg)</figcaption></figure><p id="10f3b13b-f27a-80e5-aff3-d2b5d0dd9825" class="">By applying the logic stated above, the following results were obtained:</p><div id="10f3b13b-f27a-808b-b5ad-fcf909881cc2" class="column-list"><div id="10f3b13b-f27a-801a-8fb9-f9be7a5722cb" style="width:50%" class="column"><figure id="10f3b13b-f27a-805a-82d1-ef5b5dc8696e" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha1.jpg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha1.jpg"/></a><figcaption>⍺ = 1</figcaption></figure><figure id="10f3b13b-f27a-8036-9917-ebc605d68e1b" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha4.jpg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha4.jpg"/></a><figcaption>⍺ = 4</figcaption></figure><p id="10f3b13b-f27a-800b-81a1-e462145809a8" class="">
+</p></div><div id="10f3b13b-f27a-80b1-a5f9-db2b1d8358a3" style="width:50%" class="column"><figure id="10f3b13b-f27a-80d2-a1f4-d5ad236cae93" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha2.jpg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha2.jpg"/></a><figcaption>⍺ = 2</figcaption></figure><figure id="10f3b13b-f27a-8053-bb40-ceb3c3536b7e" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha8.jpg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_taj_alpha8.jpg"/></a><figcaption>⍺ = 8</figcaption></figure><p id="10f3b13b-f27a-8035-8567-f7acb9035937" class="">
+</p></div></div><p id="10f3b13b-f27a-80af-bb91-ea3d7fda320a" class="">These images show that for greater values of alpha, the high-frequency details of the original image (taj.jpg) are emphasized more.  </p><p id="10f3b13b-f27a-8014-9d90-f29d13950999" class="">I tested out this image sharpening technique with a another input image:</p><figure id="10f3b13b-f27a-8052-adc7-cec482a60f1d" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_black-maned-lion.jpg"><img style="width:576px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_black-maned-lion.jpg"/></a><figcaption>Input (black-maned-lion.jpg)</figcaption></figure><div id="10f3b13b-f27a-80ac-8177-d43b6b7258d1" class="column-list"><div id="10f3b13b-f27a-80d6-b8bd-f89afc7509db" style="width:50%" class="column"><figure id="10f3b13b-f27a-8081-839f-e1385d83d224" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha1.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha1.jpg"/></a><figcaption>⍺ = 1</figcaption></figure><p id="10f3b13b-f27a-8000-8b56-e404cf1a76fd" class="">
+</p></div><div id="10f3b13b-f27a-80e6-b4ca-f592d0ee2117" style="width:50%" class="column"><figure id="10f3b13b-f27a-8070-8881-d2518f6e185c" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha2.jpg"><img style="width:384px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha2.jpg"/></a><figcaption>⍺ = 2</figcaption></figure></div></div><div id="10f3b13b-f27a-80e5-99ad-c773dabd8a00" class="column-list"><div id="10f3b13b-f27a-8009-aa1c-f63f6f757e27" style="width:50%" class="column"><figure id="10f3b13b-f27a-80f2-a0c2-ed3d01ed5301" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha4.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha4.jpg"/></a><figcaption>⍺ = 4</figcaption></figure></div><div id="10f3b13b-f27a-8079-b919-fb585249d8fa" style="width:50%" class="column"><figure id="10f3b13b-f27a-8050-bd0e-f2020b21d25d" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha8.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_lion_alpha8.jpg"/></a><figcaption>⍺ = 8</figcaption></figure></div></div><p id="10f3b13b-f27a-802b-b26a-f70570fb92b2" class="">The above series of images display that the higher frequency components of the input image (i.e. the mane, fur, whiskers) are emphasized further with greater alpha values. </p><p id="10f3b13b-f27a-8056-bc44-c4f360786652" class="">I also tested out blurring an already sharp image, and adding details back with the unsharp mask filter. To blur the input image, I used a gaussian kernel with width 15 and standard deviation 2. </p><figure id="10f3b13b-f27a-80f1-8691-e708eedae6c6" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady.jpg"/></a><figcaption>Input (brady.jpg)</figcaption></figure><figure id="10f3b13b-f27a-805e-ace8-dbbdb9d8d484" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_blurred.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_blurred.jpg"/></a><figcaption>Blurred input (brady.jpg)</figcaption></figure><p id="10f3b13b-f27a-80d2-9f11-c473ee4b3f96" class="">
+</p><p id="10f3b13b-f27a-8067-8b79-ebe6b3dae3c7" class="">The following are attempts to recover the sharpness of the input image:</p><figure id="10f3b13b-f27a-8024-b470-e3a307a8a222" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha1.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha1.jpg"/></a><figcaption>⍺ = 1</figcaption></figure><figure id="10f3b13b-f27a-8070-b887-dd53e2d5af69" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha2.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha2.jpg"/></a><figcaption>⍺ = 2</figcaption></figure><figure id="10f3b13b-f27a-806f-8607-d96d2248cda8" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha4.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha4.jpg"/></a><figcaption>⍺ = 4</figcaption></figure><figure id="10f3b13b-f27a-8019-907c-c4b0d0d2e0f7" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha8.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/2.1_brady_alpha8.jpg"/></a><figcaption>⍺ = 8</figcaption></figure><p id="10f3b13b-f27a-807b-8aa3-f0b0acdd536e" class="">The results show that using some 2.1 | 2 &lt; ⍺ &lt; 4 for the unsharp mask filter would produce the ideal sharpness. </p><p id="10f3b13b-f27a-8093-83d3-fdc8066b193d" class="">
+</p><h3 id="10f3b13b-f27a-8033-a8ee-e14ae913dcc9" class="">2.2</h3><p id="10f3b13b-f27a-80c1-868e-eadad211ffa8" class="">For this part of the project, I was tasked with producing hybrid images. Low-pass filtering one image would yield a low-frequency image that is more visible at a distance. High-pass filtering another image would yield a high-frequency image that is more visible close up. Averaging the low-frequencies of one image and the high frequencies of another image would result in a hybrid image (something that is perceived differently at varying distances). </p><p id="1103b13b-f27a-804f-bf05-f4040e42c3da" class="">I first tested out the hybrid-image technique on the provided Derek and Nutmeg example. I used gaussian kernels with σ=10 and width 61 for both low-pass and high pass filtering. For all examples in this part, I used the provided alignment code to align the two input images.</p><div id="1103b13b-f27a-803d-88b5-cc926bde4af1" class="column-list"><div id="1103b13b-f27a-80fd-b4ef-f4cadffe836c" style="width:50%" class="column"><figure id="1103b13b-f27a-801c-946b-e261e33daea4" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/DerekPicture.jpg"><img style="width:192px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/DerekPicture.jpg"/></a><figcaption>Derek.jpg</figcaption></figure><p id="1103b13b-f27a-80f1-a2f8-fcefa8c9942a" class="">
+</p></div><div id="1103b13b-f27a-80d8-a8ff-e729e1c76d7f" style="width:50%" class="column"><figure id="1103b13b-f27a-808a-9374-fd0d93f284b4" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/nutmeg.jpg"><img style="width:384px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/nutmeg.jpg"/></a><figcaption>Nutmeg.jpg</figcaption></figure></div></div><figure id="1103b13b-f27a-8066-8b5c-cc7dce247ad1" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/DerekNutmeg.jpg"><img style="width:384px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/DerekNutmeg.jpg"/></a><figcaption>Derek + Nutmeg (Derek low frequencies, Nutmeg high frequencies)</figcaption></figure><p id="10f3b13b-f27a-8025-8da6-e6de286ac1ea" class="">For the bells and whistles component of this part, I used the color versions of both input images for best results. As seen above, Nutmeg (the cat) is visible at a close distance, while Derek becomes more visible further from the screen. </p><p id="1103b13b-f27a-80c0-b8c8-d2fe9786fa00" class="">
+</p><p id="1103b13b-f27a-8032-ae5b-d09d2f27e46c" class="">I tested out the hybrid image approach on two sets of new images. For both sets, I used σ=10 for the low frequency input and σ=7 for the high frequency input. For both sets, the gaussian kernel for each filter had a width of (6 * σ + 1).</p><p id="1103b13b-f27a-8014-8ce2-edbcc5340e2a" class="">This first set was a failure:</p><figure id="1103b13b-f27a-8016-a3b7-e5ea4be67212" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/porsche.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/porsche.jpg"/></a><figcaption>Input for high frequencies (porsche.jpg)</figcaption></figure><figure id="1103b13b-f27a-80ba-92b8-d17bb03710e2" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/speed-limit.jpg"><img style="width:624px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/speed-limit.jpg"/></a><figcaption>Input for low frequencies (speed-limit.jpg)</figcaption></figure><figure id="1103b13b-f27a-80f4-8e18-e3f4e3eb60f6" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/failure.jpg"><img style="width:708px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/failure.jpg"/></a><figcaption>Output (failure.jpg) *To whom it may concern, second gear in the above Porsche is good for 78 mph</figcaption></figure><p id="1103b13b-f27a-80f5-896d-fbca576f5ae6" class="">As seen above, the hybridization technique doesn’t work properly due to the dominant black outlines and font of the low frequency image. It is also difficult to align the two images properly (extreme differences in shape). </p><p id="1103b13b-f27a-807d-a6c8-c2f698c39c0f" class="">
+</p><p id="1103b13b-f27a-80fc-b021-e52c7a545539" class="">My favorite hybrid image was more of a success:</p><figure id="1103b13b-f27a-808b-95b0-f1caa980cf16" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/f1.jpg"><img style="width:708px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/f1.jpg"/></a><figcaption>Input for high frequencies (f1.jpg)</figcaption></figure><figure id="1103b13b-f27a-8075-bc71-f99a55186b59" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrari.jpg"><img style="width:708px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrari.jpg"/></a><figcaption>Input for low frequencies (ferrari.jpg)</figcaption></figure><figure id="1103b13b-f27a-8094-983f-ea9ab55e7de4" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/FerrariF1.jpg"><img style="width:708px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/FerrariF1.jpg"/></a><figcaption>Output (Ferrari+F1.jpg)</figcaption></figure><p id="1103b13b-f27a-80ee-81fd-e40b1417833a" class="">The results are intriguing when considering the Fourier domain. I visualized the input images, low and high-passed images, and the output image in the Fourier domain:</p><div id="1103b13b-f27a-804b-9833-dda2cc3353fc" class="column-list"><div id="1103b13b-f27a-806a-bef5-e39410952bdd" style="width:50%" class="column"><figure id="1103b13b-f27a-8067-ba06-e43f3cd68aed" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrari_fourier.jpg"><img style="width:432px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrari_fourier.jpg"/></a><figcaption>Fourier of ferrari.jpg (input for low pass filter)</figcaption></figure><figure id="1103b13b-f27a-808b-b818-c1ee6812f4cd" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrari_low_fourier.jpg"><img style="width:331px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrari_low_fourier.jpg"/></a><figcaption>Fourier of low-passed ferrari.jpg</figcaption></figure></div><div id="1103b13b-f27a-805d-a4b9-ef4a8607a62c" style="width:50%" class="column"><figure id="1103b13b-f27a-804c-8c94-c3b7d3cd13f1" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/f1_fourier.jpg"><img style="width:288px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/f1_fourier.jpg"/></a><figcaption>Fourier of f1.jpg (input for high pass filter)</figcaption></figure><figure id="1103b13b-f27a-8064-a3d2-c4d2b33fd48a" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/f1_high_fourier.jpg"><img style="width:331px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/f1_high_fourier.jpg"/></a><figcaption>Fourier of high-passed f1.jpg</figcaption></figure></div></div><figure id="1103b13b-f27a-8047-8cad-ee7f00a97210" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrarif1_fourier.jpg"><img style="width:528px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/ferrarif1_fourier.jpg"/></a><figcaption>Fourier of hybrid image (average of low-passed ferrari.jpg + high-passed f1.jpg)</figcaption></figure><p id="1103b13b-f27a-8013-8af5-edae208b660e" class="">
+</p><h3 id="1103b13b-f27a-80a8-bb46-d9c5b5deaafc" class="">2.3-2.4</h3><p id="1103b13b-f27a-801a-82a0-dea1dbf210d3" class="">For these parts, I was tasked with performing multi-resolution blending. This process involves taking two input images (with a mask) and producing a blended combination of both images. This blended combination should be relatively seamless and not have any obvious artifacts.</p><p id="1103b13b-f27a-8095-8be6-de9945ae1e12" class="">The first step of this multi-resolution blending process was to construct gaussian stacks of both input images. The gaussian stacks were constructed by repeatedly low-pass filtering an image (using a gaussian kernel). To construct a gaussian stack of all input image, I used a gaussian kernel of size 15, with σ=2. </p><p id="1103b13b-f27a-80ed-a947-d0c674a470e9" class="">The construction of the gaussian stack for each image helped with creating the laplacian stack for each image. I constructed the laplacian stack by subtracting the second level of the gaussian stack from the first level of the gaussian stack and so on. Essentially, the laplacian stack consists of the sub-band images (higher frequency details lost between levels of the gaussian stack). The last level of the laplacian stack is taken from the last level of the gaussian stack.  </p><p id="1103b13b-f27a-80b6-96bd-eb0b5cf60944" class="">To construct a properly blended image, I also used a mask for both input images. For the apple + orange example, I used a horizontal step function as a mask. (1s in the left half, 0s in the right half). I multiplied each level of the mask gaussian stack with the left image, and the opposite of the mask with the right image (left * mask + right * (1 - mask)). I also constructed a gaussian stack for the mask using a gaussian kernel of size 121, with  σ=20. This way, the blended image would have a less visible seam. </p><p id="1103b13b-f27a-809c-bd82-c47ba04633d4" class="">Here are my results for the apple + orange example:</p><div id="1103b13b-f27a-8092-a5f9-daf299f79510" class="column-list"><div id="1103b13b-f27a-80af-8dca-e00686b1588c" style="width:50%" class="column"><figure id="1103b13b-f27a-807f-93fc-c44c6e4873b3" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/apple.jpeg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/apple.jpeg"/></a><figcaption>apple.jpeg</figcaption></figure></div><div id="1103b13b-f27a-8002-a931-f69b5033e04d" style="width:50%" class="column"><figure id="1103b13b-f27a-801a-a75a-c14241c25fbf" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/orange.jpeg"><img style="width:300px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/orange.jpeg"/></a><figcaption>orange.jpeg</figcaption></figure></div></div><figure id="1103b13b-f27a-80e0-955f-dd68defa9cf5" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/Figure.jpg"><img style="width:558px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/Figure.jpg"/></a><figcaption>Recreation of Figure 3.42. From left to right: Laplacian stack of apple (multiplied with gaussian of mask), Laplacian stack of orange (multiplied with 1 - gaussian of mask) in the center, Laplacian stack of combined images</figcaption></figure><figure id="1103b13b-f27a-8013-bcfa-eb253fc2fcb9" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/oraple.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/oraple.jpg"/></a><figcaption>Blended Image (oraple.jpg)</figcaption></figure><p id="1103b13b-f27a-8025-b876-e1e0b5d091e4" class="">
+</p><p id="1103b13b-f27a-802a-b0ed-c55f26c38c8d" class="">I tested out the image blending technique with a few other images. For this first set, I used an irregular mask (circle mask). For the gaussian stack of the circular mask, I used a kernel size of 61, with  σ=10:</p><figure id="1103b13b-f27a-8027-afde-e24bcb3f86c6" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/Screenshot_2024-09-28_at_8.38.43_PM.png"><img style="width:288px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/Screenshot_2024-09-28_at_8.38.43_PM.png"/></a><figcaption>Circular Mask</figcaption></figure><div id="1103b13b-f27a-8057-8e26-fe86b35ac3b8" class="column-list"><div id="1103b13b-f27a-807b-934b-c6b84a2bb7dd" style="width:50%" class="column"><figure id="1103b13b-f27a-8043-939d-fab8323d8d32" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/tiger.jpeg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/tiger.jpeg"/></a><figcaption>tiger.jpeg</figcaption></figure></div><div id="1103b13b-f27a-8004-8aa4-ea03c3f8d3c9" style="width:50%" class="column"><figure id="1103b13b-f27a-80de-ba37-e045de013e78" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/panther.jpeg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/panther.jpeg"/></a><figcaption>panther.jpeg</figcaption></figure></div></div><figure id="1103b13b-f27a-802a-8bae-dc4f41a9e089" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/choice_figure.jpg"><img style="width:554px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/choice_figure.jpg"/></a><figcaption>Recreation of Figure 3.42. From left to right: Laplacian stack of panther (multiplied with gaussian of mask), Laplacian stack of tiger (multiplied with 1 - gaussian of mask) in the center, Laplacian stack of combined images</figcaption></figure><figure id="1103b13b-f27a-804e-9624-fb6d52104f9a" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/tigerpanther.jpg"><img style="width:384px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/tigerpanther.jpg"/></a><figcaption>Combined Image (tiger+panther.jpg)</figcaption></figure><p id="1103b13b-f27a-806f-b8bb-ca51528888d3" class="">Another example with the circular mask. For the gaussian stack of this circular mask, I used a kernel size of 121, with  σ=20:</p><div id="1103b13b-f27a-80a2-b497-e1b35b14352c" class="column-list"><div id="1103b13b-f27a-80d5-96f6-f2fcb08850e7" style="width:50%" class="column"><figure id="1103b13b-f27a-8089-bdb3-f377a6a9d1f1" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/brown-lab.jpeg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/brown-lab.jpeg"/></a><figcaption>brown-lab.jpeg</figcaption></figure><p id="1103b13b-f27a-809b-90ce-ede663c71fb0" class="">
+</p></div><div id="1103b13b-f27a-8071-b143-efa0eda6953b" style="width:50%" class="column"><figure id="1103b13b-f27a-8001-a650-e164e0673d93" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/yellow-lab.jpeg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/yellow-lab.jpeg"/></a><figcaption>yellow-lab.jpeg</figcaption></figure><p id="1103b13b-f27a-8037-afa6-d2fa9a79c9cd" class="">
+</p><p id="1103b13b-f27a-8018-aa46-d5b1ed7b16d8" class="">
+</p></div></div><figure id="1103b13b-f27a-8093-bf2c-c6b5840163c1" class="image"><a href="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/brownyellow-lab.jpg"><img style="width:336px" src="CS180%20Project%202%2010f3b13bf27a804ca2dcf013d84cf14d/brownyellow-lab.jpg"/></a><figcaption>Combined Image (brown+yellow-lab.jpg)</figcaption></figure><p id="1103b13b-f27a-8013-a955-ddaf059a1d3a" class="">Here, the combined image has the ears and neck area of the brown lab, and the face of the yellow lab. </p><p id="1103b13b-f27a-80a3-9db4-db8fb2158f8d" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
