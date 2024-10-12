@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CS180 Project 3</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="11d3b13b-f27a-80fa-b273-f30b2bfd4a25" class="page sans"><header><h1 class="page-title">CS180 Project 3</h1><p class="page-description"></p></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="11d3b13b-f27a-80b7-b0a0-eb70e7071b10"><div style="font-size:1.5em"><span class="icon">🛠</span></div><div style="width:100%"><h3 id="04074209-b0e0-42e8-ae15-69202539136f" class="">Vivek Bharati</h3></div></figure><p id="11d3b13b-f27a-80b9-a7ba-e0039917c646" class="">
+</p><h2 id="11d3b13b-f27a-8043-9cf3-f88a1504fe65" class="">Goal</h2><p id="11d3b13b-f27a-8053-b946-c9892937ec42" class="">The goal of this assignment is to experiment with face morphing techniques. Face morphing can be performed by defining key points, creating a triangular mesh for the reference images, and applying affine transformations to turn one image into another. </p><h2 id="11d3b13b-f27a-80b8-97e2-c9c5ee89c3cf" class="">Part 1</h2><p id="11d3b13b-f27a-80cb-94ad-ffcafef13924" class="">This part of the project involved defining correspondences between two reference images. The correspondences would be useful for defining the Delaunay triangulation (triangular mesh) for the reference images. The Delaunay triangulation divides each reference image into local segments that are used to provide information on pixel values for the morphed image. For this part, I used the <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">provided online tool</a> to define 37 key point correspondences (excluding the four image corner key points). I defined the Delaunay triangulation for the average of the two point sets (midway points), since that would lead to less warping in further steps. The results are as follows:</p><div id="11d3b13b-f27a-80f7-8c62-f32b51f539c1" class="column-list"><div id="11d3b13b-f27a-8049-8f84-f8969130bbff" style="width:50%" class="column"><figure id="11d3b13b-f27a-8041-b1ff-f95e43a6c1c1" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_10.43.27_PM.png"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_10.43.27_PM.png"/></a><figcaption>Image A (me) with Triangulation</figcaption></figure></div><div id="11d3b13b-f27a-8094-889d-cf17c0deda35" style="width:50%" class="column"><figure id="11d3b13b-f27a-803c-bbbd-d0c32f33756f" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_10.43.36_PM.png"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_10.43.36_PM.png"/></a><figcaption>Image B (my dad) with Triangulation</figcaption></figure></div></div><h2 id="11d3b13b-f27a-80e7-ab1c-d1a7f56691fe" class="">Part 2</h2><p id="11d3b13b-f27a-8066-ab59-caa4bc0e0cec" class="">For this part, I was tasked with computing a “midway face” between Image A and Image B. I implemented code to find an affine transformation between each triangle in the “midway image” and each triangle in the reference images. Using the skimage.draw.polygon function, I was able to get all the pixels in the midway image triangle and find the corresponding pixels in each reference image. I would take the values of the corresponding pixels in each reference image and apply them to the midway image. For points that fell “in between pixels” in the reference images (i.e. non-integer coordinates), I used nearest-neighbor interpolation via spicy.interpolate.griddata to estimate values for the corresponding pixels in the midway image. I averaged the values obtained from the reference images to get the values of the midway image. After iterating through all the triangles in the midway image mesh, I obtained the following results:</p><div id="11d3b13b-f27a-80e0-a656-c66e993d7b0f" class="column-list"><div id="11d3b13b-f27a-80cc-b1d0-ff96de201697" style="width:50%" class="column"><figure id="11d3b13b-f27a-8008-ab02-e1fa892e01f2" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/me.jpg"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/me.jpg"/></a><figcaption>Image A (me)</figcaption></figure></div><div id="11d3b13b-f27a-807a-8151-fb6db5c543d6" style="width:50%" class="column"><figure id="11d3b13b-f27a-8000-ae9d-d8191f09a42f" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/appa.jpg"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/appa.jpg"/></a><figcaption>Image B (my dad)</figcaption></figure><p id="11d3b13b-f27a-80a7-a151-fad436ba999c" class="">
+</p></div></div><figure id="11d3b13b-f27a-8071-9ca4-da83a693ca13" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_10.43.47_PM.png"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_10.43.47_PM.png"/></a><figcaption>Midway Image</figcaption></figure><h2 id="11d3b13b-f27a-8076-9d7e-ec07914754f7" class="">Part 3</h2><p id="11d3b13b-f27a-80bc-91d7-d4a5c2325c2e" class="">For this part, I used my findings from Part 2 to generate a gif/morph sequence from Image A to Image B. For the gif/morph sequence, I generated 45 frames. For each frame, I used one weight in the interval [0, 1] to modulate both the warping (affects triangulation, affine transformations) and the cross-dissolving (affects pixel value) of the reference images. </p><figure id="11d3b13b-f27a-805e-90a3-dbde89797986" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/morph.gif"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/morph.gif"/></a></figure><p id="11d3b13b-f27a-80f8-a91a-f8d19eb0f11f" class="">
+</p><h2 id="11d3b13b-f27a-800f-9361-c16e85081d65" class="">Part 4</h2><p id="11d3b13b-f27a-8019-a847-ef8425b91b26" class="">For this part, I was tasked with computing the mean face of a population of images. For this and subsequent parts, I used the <a href="https://web.archive.org/web/20210305094647/http://www2.imm.dtu.dk/~aam/datasets/datasets.html">Danes Dataset</a>. The version of the Danes Dataset I used for this project includes 240 portraits of Danes. The portraits contain various poses and facial expressions. Each portrait has a corresponding .asf file, which contains 58 relevant key point information for facial features. I parsed the .asf files to gain a numpy array of key points for each image. I computed the mean shape of the faces in the Danes Dataset, and morphed each image in the dataset onto the mean geometry. Here are a few examples:</p><div id="11d3b13b-f27a-8024-aa13-dcb2de967714" class="column-list"><div id="11d3b13b-f27a-80a8-a6c1-fe499b6d1381" style="width:50%" class="column"><figure id="11d3b13b-f27a-808c-84b2-f3e77c0ec056" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.27.21_PM.png"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.27.21_PM.png"/></a><figcaption>Source 1</figcaption></figure><p id="11d3b13b-f27a-808e-9165-d9fedb8396ef" class="">
+</p></div><div id="11d3b13b-f27a-8068-8c3e-e59b42f79316" style="width:50%" class="column"><figure id="11d3b13b-f27a-801e-8a99-ecfa5649a056" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.27.30_PM.png"><img style="width:336px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.27.30_PM.png"/></a><figcaption>Warped 1</figcaption></figure></div></div><div id="11d3b13b-f27a-80fa-bc6e-dea2b9aca5ef" class="column-list"><div id="11d3b13b-f27a-80b1-843c-e6799e4ca709" style="width:50%" class="column"><figure id="11d3b13b-f27a-8088-9ca6-c789a088c3d0" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.10_PM.png"><img style="width:331px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.10_PM.png"/></a><figcaption>Source 2</figcaption></figure></div><div id="11d3b13b-f27a-8069-89d0-d21fe9cf2ad8" style="width:50%" class="column"><figure id="11d3b13b-f27a-8010-9881-fc7e2c1f2523" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.17_PM.png"><img style="width:331px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.17_PM.png"/></a><figcaption>Warped 2</figcaption></figure></div></div><div id="11d3b13b-f27a-80fe-babd-d9c66f4119dd" class="column-list"><div id="11d3b13b-f27a-806d-a5b6-e6157d51f09c" style="width:50%" class="column"><figure id="11d3b13b-f27a-80ce-bedb-fbbc2e2258a8" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.25_PM.png"><img style="width:331px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.25_PM.png"/></a><figcaption>Source 3</figcaption></figure></div><div id="11d3b13b-f27a-8015-a5b9-c67c75831e6c" style="width:50%" class="column"><figure id="11d3b13b-f27a-800b-adb4-e50dace8a06e" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.33_PM.png"><img style="width:331px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/Screenshot_2024-10-11_at_11.46.33_PM.png"/></a><figcaption>Warped 3</figcaption></figure></div></div><p id="11d3b13b-f27a-8060-a570-ead472234dd9" class="">After computing all images warped onto the mean geometry, I simply averaged the values of all warped images to obtain the average Dane face of the Danes Dataset:</p><figure id="11d3b13b-f27a-80aa-89e1-f561e26aa881" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/average_face.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/average_face.jpg"/></a><figcaption>Average Face (Danes Dataset)</figcaption></figure><p id="11d3b13b-f27a-80cc-ae59-edde4ffb69c3" class="">I also calculated my face warped onto the Average Face geometry:</p><figure id="11d3b13b-f27a-8070-9e95-ce89a5abbf57" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/my_warped_face.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/my_warped_face.jpg"/></a><figcaption>My Face (warped onto Average Face geometry)</figcaption></figure><p id="11d3b13b-f27a-80b0-9cf8-d28f72b3e9d7" class="">…as well as the Average Face warped onto my face geometry:</p><figure id="11d3b13b-f27a-8089-b86e-ea8229ce8b91" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/warped_average_face.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/warped_average_face.jpg"/></a><figcaption>Average Face (warped onto my geometry)</figcaption></figure><h2 id="11d3b13b-f27a-80ce-a985-fc20fd7b8c05" class="">Part 5</h2><p id="11d3b13b-f27a-80fe-a50d-e824f5c47b32" class="">For this part, I used the Danes Dataset again to produce a caricature of myself. This time, I calculated the deviation of my face from the average <span style="border-bottom:0.05em solid">male</span> Dane face, multiplied this deviation by alpha=1.5, and added the result to the average male Dane face. This way, I emphasized the differences between my face and the average male Dane face:</p><figure id="11d3b13b-f27a-8085-b80e-e92f43c1108e" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/alpha1.5.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/alpha1.5.jpg"/></a><figcaption>Caricature (alpha = 1.5)</figcaption></figure><p id="11d3b13b-f27a-806d-8bf9-f36f8a4bee90" class="">The above caricature shows that at least from ratios present in each image, my eyes are bigger and set further apart compared to the average male Dane face. </p><h2 id="11d3b13b-f27a-803e-8b5e-f302abb84eb8" class="">Bells and Whistles</h2><p id="11d3b13b-f27a-8074-879d-ee5f7525dc39" class="">For this component of the project, I experimented further with the average male Dane face by attempting to modify the ethnicity of my face. For this part, I first experimented with morphing my face onto the geometry of the average male Dane face:</p><figure id="11d3b13b-f27a-807f-bedc-ebf7be01dd2e" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/just_shape.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/just_shape.jpg"/></a><figcaption>Morphing just shape</figcaption></figure><p id="11d3b13b-f27a-8001-95b7-f384dc9b6ae4" class="">Next, I experimented with morphing just my appearance into that of the average male Dane face:</p><figure id="11d3b13b-f27a-80c1-b641-f3b28aa6caa4" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/just_appearance.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/just_appearance.jpg"/></a><figcaption>Morphing just appearance</figcaption></figure><p id="11d3b13b-f27a-8093-92c1-d84164d2981f" class="">And for the last step, I morphed both my appearance and shape onto the average male Dane face:</p><figure id="11d3b13b-f27a-80f1-b96f-e0d4b3c3fc33" class="image"><a href="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/shape_and_appearance.jpg"><img style="width:384px" src="CS180%20Project%203%2011d3b13bf27a80fab273f30b2bfd4a25/shape_and_appearance.jpg"/></a><figcaption>Morphing both shape and appearance</figcaption></figure><p id="11d3b13b-f27a-80e9-9683-dce230411735" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
