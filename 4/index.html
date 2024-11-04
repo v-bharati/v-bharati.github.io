@@ -1,0 +1,698 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CS180 Project 4</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1343b13b-f27a-809d-988c-c539ccdc9899" class="page sans"><header><h1 class="page-title">CS180 Project 4</h1><p class="page-description"></p></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1343b13b-f27a-80c6-afca-f97b4c4f052e"><div style="font-size:1.5em"><span class="icon">🛠</span></div><div style="width:100%"><h3 id="42d54abe-1015-4895-a394-6f0268733ed7" class="">Vivek Bharati</h3></div></figure><h1 id="1343b13b-f27a-8079-b6fa-cb3262c74e3c" class="">Goal</h1><p id="1343b13b-f27a-80cf-9edb-e20fb4c1f1cb" class="">The goal of this assignment is to experiment with image transformations. In particular, this project involves using image transformations to generate image mosaics. The first half (Section A) deals with the basics of image transformations (i.e. homographies). The second half (Section B) delves into automatic mosaic generation.</p><h1 id="1343b13b-f27a-8015-a1f7-ceda291ff52c" class="">Section A</h1><p id="1343b13b-f27a-8013-846b-d3c239bb9f2b" class="">Image Transformation Basics</p><h2 id="1343b13b-f27a-800d-adfd-c176870ccb56" class="">Part 1</h2><p id="1343b13b-f27a-8060-81e8-c98bee4357fb" class="">This part of the project involved taking pictures that could be part of the same mosaic (maintaining the same center of projection). I also marked correspondences between images using the <a href="https://cal-cs180.github.io/fa23/hw/proj3/tool.html">provided online tool</a>. </p><p id="1343b13b-f27a-8070-88b6-d5bd4f17e90d" class="">
+</p><p id="1343b13b-f27a-80e0-af9d-c7c43017ef59" class="">Set 1:</p><div id="1343b13b-f27a-80f9-86af-f1cf8fe3a169" class="column-list"><div id="1343b13b-f27a-80af-857c-c33fbad8f226" style="width:50%" class="column"><figure id="1343b13b-f27a-8013-9e00-e6f12571d6fa" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom1.jpg"><img style="width:432px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom1.jpg"/></a><figcaption>left</figcaption></figure></div><div id="1343b13b-f27a-807b-bdaf-ed2807f7619f" style="width:50%" class="column"><figure id="1343b13b-f27a-8018-855e-d46dbd60e93c" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom2.jpg"><img style="width:432px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom2.jpg"/></a><figcaption>right</figcaption></figure></div></div><div id="1343b13b-f27a-80cb-84fc-c18a4c8362aa" class="column-list"><div id="1343b13b-f27a-8002-be91-d421af4ae976" style="width:50%" class="column"><figure id="1343b13b-f27a-80e9-a8d9-f6cdeb12ff59" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.41.51_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.41.51_PM.png"/></a><figcaption>left (annotated)</figcaption></figure></div><div id="1343b13b-f27a-8056-8eb4-fdf69ee4c3cf" style="width:50%" class="column"><figure id="1343b13b-f27a-8003-bfea-ca88c038e2a1" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.42.01_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.42.01_PM.png"/></a><figcaption>right (annotated)</figcaption></figure></div></div><p id="1343b13b-f27a-804e-a5b1-c174648ced72" class="">Set 2:</p><div id="1343b13b-f27a-8050-ac93-d96eef85377a" class="column-list"><div id="1343b13b-f27a-8019-9676-c03b991312e5" style="width:50%" class="column"><figure id="1343b13b-f27a-80be-b8f9-caf4bdc650da" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom3.jpg"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom3.jpg"/></a><figcaption>left</figcaption></figure></div><div id="1343b13b-f27a-80f9-8afc-c599faccc1d6" style="width:50%" class="column"><figure id="1343b13b-f27a-80cb-8d21-fa0d31fa7a66" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom4.jpg"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom4.jpg"/></a><figcaption>right</figcaption></figure></div></div><div id="1343b13b-f27a-800c-9ef0-c364ddcde977" class="column-list"><div id="1343b13b-f27a-80d8-a3df-ec772f3a13a6" style="width:50%" class="column"><figure id="1343b13b-f27a-80c9-a03f-dd3aab1d427c" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.45.18_PM.png"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.45.18_PM.png"/></a><figcaption>left (annotated)</figcaption></figure></div><div id="1343b13b-f27a-80ff-98a5-dc8aa6f483ab" style="width:50%" class="column"><figure id="1343b13b-f27a-806b-96f5-ff079ea4ea20" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_10.46.34_PM.png"><img style="width:331px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_10.46.34_PM.png"/></a><figcaption>right (annotated)</figcaption></figure></div></div><p id="1343b13b-f27a-8034-8b03-ef323e22fb61" class="">Set 3:</p><div id="1343b13b-f27a-8080-b9f7-ee055317693c" class="column-list"><div id="1343b13b-f27a-80a6-a338-f31d3cb525a7" style="width:50%" class="column"><figure id="1343b13b-f27a-80af-9aac-d8da4274af74" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom5.jpg"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom5.jpg"/></a><figcaption>left</figcaption></figure><p id="1343b13b-f27a-8061-a390-d1e4d834139c" class="">
+</p></div><div id="1343b13b-f27a-801b-bf11-d29175568258" style="width:50%" class="column"><figure id="1343b13b-f27a-8020-adba-d1a9a3d18faf" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom6.jpg"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom6.jpg"/></a><figcaption>right</figcaption></figure><p id="1343b13b-f27a-80df-96cb-e51b9688644c" class="">
+</p></div></div><div id="1343b13b-f27a-80c4-a0a9-f2e4a7712ed0" class="column-list"><div id="1343b13b-f27a-8084-91f8-e8c976d2b9ab" style="width:50%" class="column"><figure id="1343b13b-f27a-806b-a560-ed3353e4dba1" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.03.29_PM.png"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.03.29_PM.png"/></a><figcaption>left (annotated)</figcaption></figure></div><div id="1343b13b-f27a-80df-92c6-f9892f513a2c" style="width:50%" class="column"><figure id="1343b13b-f27a-802c-b4f3-e9d2f2887ebf" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.03.36_PM.png"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.03.36_PM.png"/></a><figcaption>right (annotated)</figcaption></figure><p id="1343b13b-f27a-805a-95fa-e20762b8da96" class="">
+</p></div></div><h2 id="1343b13b-f27a-80fb-b179-eca30c5774e6" class="">Part 2</h2><p id="1343b13b-f27a-804e-90a1-ee867524dd27" class="">This part of the project involved computing/recovering homographies. A homography is a transformation that maps one projection plane to another (although they ideally must share the same center of projection). </p><p id="1343b13b-f27a-8081-90b0-cfa5e0fd20af" class="">In order to compute a homography matrix H, I solved the least squares estimate for the elements of H based on the below derivation. </p><p id="1343b13b-f27a-808a-b339-f8265b564f9e" class="">*Note p’ is the point in the target image, and p is the point in the source image</p><p id="1343b13b-f27a-807d-ab2b-fd002e49a6e1" class="">
+</p><figure id="1343b13b-f27a-80bb-82f3-f03022053406" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/IMG_B0B422AE9F21-1.jpeg"><img style="width:528px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/IMG_B0B422AE9F21-1.jpeg"/></a></figure><p id="1343b13b-f27a-80ed-b8cb-ec42af2eb0c0" class="">*As a note, for xi’, the prime (‘) denotes a coordinate in the target domain (i.e. image 2), while xi is a coordinate in the source domain (i.e. image 1). The least squares estimate is constructed based off of all the (xi, yi), (xi’, yi’) correspondence pairs between images. When applying the homography to correspondences (i.e. a point in the source image), it is important to note that the transformed vector contains a warp factor for each coordinate. Dividing by the warp factor yields the true estimated point in the target image. </p><h2 id="1343b13b-f27a-8058-883d-d29b7da9089b" class="">Part 3</h2><p id="1343b13b-f27a-8074-93c6-ee10bb0e1d32" class="">This part of the project involved using the calculated homographies (from the method described in Part 2) to warp reference images. In particular, the homography transformation can be used to “rectify” an image, or turn a perceived non-rectangular feature (due to camera location and feature location/orientation) into a rectangular feature. </p><p id="1343b13b-f27a-8002-9534-e1a7e7005490" class="">Here are my results for image rectification:</p><p id="1343b13b-f27a-80b2-be96-d3bfbacfbff2" class="">Example 1:</p><div id="1343b13b-f27a-8053-8dbb-e8286e2fb839" class="column-list"><div id="1343b13b-f27a-805d-8375-d35c607ad8b8" style="width:50%" class="column"><figure id="1343b13b-f27a-8099-9e8a-ccb182f8e3e0" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.12.55_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.12.55_PM.png"/></a><figcaption>Points labeled for rectification</figcaption></figure></div><div id="1343b13b-f27a-80fd-bf05-db2ce75293a8" style="width:50%" class="column"><figure id="1343b13b-f27a-80b2-9b4f-d1e48aaa176e" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/rectified1.jpg"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/rectified1.jpg"/></a><figcaption>Rectified image</figcaption></figure></div></div><figure id="1343b13b-f27a-8049-9821-e82ac51d3c86" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.13.27_PM.png"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.13.27_PM.png"/></a><figcaption>Image cropped for clarity</figcaption></figure><div id="1343b13b-f27a-8022-9e02-d981efe78faf" class="column-list"><div id="1343b13b-f27a-80d2-89d1-ce39f25417ec" style="width:50%" class="column"><p id="1343b13b-f27a-8052-8f36-f2890d3fe8e9" class="">
+</p></div><div id="1343b13b-f27a-80f3-9738-d25eafb27995" style="width:50%" class="column"><p id="1343b13b-f27a-8078-90fb-c84c3a3e1e98" class="">
+</p></div></div><p id="1343b13b-f27a-8074-8ed5-e55b521e2666" class="">Example 2:</p><div id="1343b13b-f27a-80ce-a792-ef25d2e518b0" class="column-list"><div id="1343b13b-f27a-8050-920f-e3cdb8379cea" style="width:50%" class="column"><figure id="1343b13b-f27a-8009-875b-ed75fb0387dc" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.14.07_PM.png"><img style="width:288px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.14.07_PM.png"/></a><figcaption>Points labeled for rectification</figcaption></figure></div><div id="1343b13b-f27a-809b-9562-c81954ea90d4" style="width:50%" class="column"><figure id="1343b13b-f27a-80bf-9cdc-f6f057bd28a7" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/rectified2.jpg"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/rectified2.jpg"/></a><figcaption>Rectified image</figcaption></figure></div></div><figure id="1343b13b-f27a-80cb-ac2a-c721c1326406" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/dd10fa28-de02-4b90-aa22-b77e236fa81b.png"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/dd10fa28-de02-4b90-aa22-b77e236fa81b.png"/></a><figcaption>Image cropped for clarity</figcaption></figure><p id="1343b13b-f27a-80ec-b217-e12dca3069b4" class="">(*for the art connoisseur, the second example is me next to Van Gogh’s <em>Almond Blossom</em>)</p><h2 id="1343b13b-f27a-80b6-b7c3-fb9572d49a55" class="">Part 4</h2><p id="1343b13b-f27a-80a9-9f4d-fc9c75b315d5" class="">For this part, I was tasked with blending warped images into a complete mosaic (panorama). To do so, I first computed a homography matrix H based on the correspondences between the “left”and “right” image. Then, I warped each “left” image, based on its corners, to find the polygon corresponding to the warped image. Subsequently, I used the inverse warp/homography matrix H, to populate pixel values in the warped image with those from the original image. </p><p id="1343b13b-f27a-80a4-83c2-c424610a3e7f" class="">To combine the two images (transformed ”left” and original “right”) into a mosaic, I used the distance transform. I calculated the normalized distance transform (which estimates the distance from each pixel to the closest background pixel, or pixel with value 0) for each part of the mosaic. Then, I generated a normalized mask based on where the distance transform for the left image was greater than the distance transform for the right image (1 if greater, 0 otherwise). Using the code from Project 2 (Laplacian blending), I blended the two masked images into a complete mosaic. My results are below:</p><p id="1343b13b-f27a-80c7-8103-db1efda41809" class="">
+</p><p id="1343b13b-f27a-80f4-893b-d246884bf972" class="">Example 1:</p><div id="1343b13b-f27a-8073-8ab0-f2a1bd5a5510" class="column-list"><div id="1343b13b-f27a-80d3-a1b9-c468db6cd3a1" style="width:50%" class="column"><figure id="1343b13b-f27a-80b1-89db-c29b84893164" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom1%201.jpg"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom1%201.jpg"/></a><figcaption>left</figcaption></figure></div><div id="1343b13b-f27a-80da-93c6-c543a56210a5" style="width:50%" class="column"><figure id="1343b13b-f27a-80f9-8408-d0aa400e6d45" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom2%201.jpg"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom2%201.jpg"/></a><figcaption>right</figcaption></figure></div></div><div id="1343b13b-f27a-800f-91db-ef8643e424df" class="column-list"><div id="1343b13b-f27a-80f3-bd42-dad823adad2c" style="width:50%" class="column"><figure id="1343b13b-f27a-80ae-b8e7-e31b3a1ed9d7" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.17_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.17_PM.png"/></a><figcaption>warped left (on mosaic canvas)</figcaption></figure></div><div id="1343b13b-f27a-8013-8374-f9cfa45860e1" style="width:50%" class="column"><figure id="1343b13b-f27a-8090-9876-ed899fa9f439" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.26_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.26_PM.png"/></a><figcaption>warped right (on mosaic canvas)</figcaption></figure></div></div><div id="1343b13b-f27a-8025-be62-d9d97f9b8545" class="column-list"><div id="1343b13b-f27a-8030-b72a-e92ac9c64bea" style="width:50%" class="column"><figure id="1343b13b-f27a-80b8-8b6d-e7066f39271b" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.38_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.38_PM.png"/></a><figcaption>distance transform of left </figcaption></figure></div><div id="1343b13b-f27a-80c3-be6b-d9bc75a8e364" style="width:50%" class="column"><figure id="1343b13b-f27a-806d-86a5-d51519581192" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.47_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_6.43.47_PM.png"/></a><figcaption>distance transform of right</figcaption></figure></div></div><figure id="1343b13b-f27a-801c-b6a3-e84716ad2551" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.45.44_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.45.44_PM.png"/></a><figcaption>normalized three channel mask</figcaption></figure><figure id="1343b13b-f27a-802b-898f-c1c65d9c37fe" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic1.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic1.jpg"/></a><figcaption>final mosaic</figcaption></figure><p id="1343b13b-f27a-8073-ac94-d2ff06c08fe3" class="">
+</p><p id="1343b13b-f27a-801a-b658-dd72a90ddc8e" class="">I repeated the same process described in detail above for two more sets of mosaics:</p><p id="1343b13b-f27a-8059-a204-c7a3f3116621" class="">
+</p><p id="1343b13b-f27a-80a3-9bc7-f7e3ffa9a270" class="">Example 2:</p><div id="1343b13b-f27a-808f-bd85-c73f14e9159d" class="column-list"><div id="1343b13b-f27a-8043-a047-eaec4b7dfa02" style="width:50%" class="column"><figure id="1343b13b-f27a-80f8-ac00-d4fe48b33446" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom3%201.jpg"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom3%201.jpg"/></a><figcaption>left</figcaption></figure></div><div id="1343b13b-f27a-8079-b31f-ea6b36cc4fca" style="width:50%" class="column"><figure id="1343b13b-f27a-805f-935c-fc92936af5c5" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom4%201.jpg"><img style="width:2400px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom4%201.jpg"/></a><figcaption>right</figcaption></figure></div></div><figure id="1343b13b-f27a-80c4-bb5e-ce78ffcb89dc" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic2.jpg"><img style="width:528px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic2.jpg"/></a><figcaption>final mosaic (differences in lighting provide the above artistic effect, playing on the mask. There appear to be clouds in the sky, although it is actually clear)</figcaption></figure><p id="1343b13b-f27a-8078-84a4-e14cf91a4b9f" class="">Example 3:</p><div id="1343b13b-f27a-80c6-94f6-f86bc69bbc87" class="column-list"><div id="8ec40219-3c1e-4a64-9db4-c96ba940da03" style="width:50%" class="column"><figure id="f7396c78-6337-4d65-a930-8a58f67c59fa" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom5.jpg"><img style="width:336px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom5.jpg"/></a><figcaption>left</figcaption></figure><p id="f0646143-d7f9-4267-b61e-32baded7eff4" class="">
+</p></div><div id="237e2994-c1c5-49f2-ab1d-bfad19cfc3e9" style="width:50%" class="column"><figure id="b78ea876-c1d4-435b-8e10-107a3d8e054c" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom6.jpg"><img style="width:288px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/hom6.jpg"/></a><figcaption>right</figcaption></figure></div></div><figure id="1343b13b-f27a-808b-8b1a-fff5105c47c2" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic3.jpg"><img style="width:528px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic3.jpg"/></a><figcaption>final mosaic</figcaption></figure><p id="1343b13b-f27a-80f5-bb71-d646cf5acc7c" class="">
+</p><h1 id="1343b13b-f27a-80bf-9ca9-da61f7a4c1e3" class="">Section B</h1><p id="1343b13b-f27a-80f3-9808-d8ce9dd92bb6" class="">The previous section (Section A) involved a lot of manual work, especially for detecting correspondences in a way that would result in a decent mosaic. This section of the project delves into automated mosaic generation. Parts 1-3 follow <a href="https://courses.cs.washington.edu/courses/cse576/05sp/papers/Brown_cvpr05.pdf">this paper</a> by Brown et al.</p><h2 id="1343b13b-f27a-8073-afc0-fb3e2b71fea1" class="">Part 1</h2><p id="1343b13b-f27a-8057-8431-d8486d0b55fc" class="">This part involved detecting “Harris” corners, with the help of provided starter code. Here is an example:</p><figure id="1343b13b-f27a-8064-b573-f7e9dfa9e8f8" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/sample_rect2.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/sample_rect2.jpg"/></a><figcaption>input</figcaption></figure><figure id="1343b13b-f27a-80e2-be72-e718a868b6e0" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.59.41_PM.png"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_7.59.41_PM.png"/></a><figcaption>input with detected Harris corners</figcaption></figure><p id="1343b13b-f27a-802b-9b6f-fe2f45d6985f" class="">As seen above, the base Harris detection method is very sensitive, and finds way too many “corners” or interest points. In order to find more meaningful interest points, I implemented the Adaptive Non-Maximal Suppression method described in the paper linked above. </p><p id="1343b13b-f27a-80e6-9015-ecaee0417240" class="">Adaptive Non-Maximal Suppression (ANMS) is a method for filtering the raw interest points gained from Harris corner detection. This method passes all top interest points that have the greatest corner strength of all neighboring points within a minimum radius r. I used a KD tree to store information about a given interest point and its corresponding neighbors. Then, I looked through the corner strengths of neighboring pixels. I kept increasing the search radius until I found a neighbor such that the given interest point’s corner strength is less than 0.9 (recommended c_robust according to the paper) of the neighbor’s corner strength. Upon finding a stronger neighbor, I recorded the minimum radius for the given interest point. </p><p id="1343b13b-f27a-80a3-9404-da3b55a71c15" class="">I sorted all corners by minimum radii, and selected the top corners as valid interest points:</p><figure id="1343b13b-f27a-80e7-bf70-dbbe506dbd81" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.05.32_PM.png"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.05.32_PM.png"/></a><figcaption>ANMS 500, r = 24 (top 500 interest points, with the lowest minimum radius being 24 pixels)</figcaption></figure><figure id="1343b13b-f27a-80b1-a56a-e10fbfa04757" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.05.39_PM.png"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.05.39_PM.png"/></a><figcaption>ANMS 250, r = 35 (top 250 interest points, with the lowest minimum radius being 35 pixels)</figcaption></figure><p id="1343b13b-f27a-808e-837c-d32fa11ad9b6" class="">As seen above, using ANMS in addition to raw Harris corner detection allows for a more uniform and sparse set of interest points. </p><h2 id="1343b13b-f27a-80a7-a2ac-ce1d060e4e05" class="">Part 2</h2><p id="1343b13b-f27a-8003-a2e8-ccf58756c989" class="">For this part, I extracted features for each interest point returned by the ANMS procedure. As described in the above linked paper from Brown et al, I collected 40x40 axis-aligned patches of pixels surrounding each ANMS interest point. Then, I downsampled each patch (with anti-aliasing/gaussian blurring) to obtain a “feature” for each interest point. I normalized each feature to account for bias and gain. Below is an example of collecting 49 features from running the ANMS procedure for 49 interest points:</p><figure id="1343b13b-f27a-80dc-bee3-e9ec9fa2fbc6" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.26.42_PM.png"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.26.42_PM.png"/></a><figcaption>ANMS 49, r = 82</figcaption></figure><figure id="1343b13b-f27a-8040-a268-df0fb09dce65" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.27.20_PM.png"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.27.20_PM.png"/></a><figcaption>grid of axis-aligned features collected from above image</figcaption></figure><h2 id="1343b13b-f27a-801f-ab87-de7a5fddf2db" class="">Part 3</h2><p id="1343b13b-f27a-80a4-8118-f90eceb4a995" class="">For this part, I used the aforementioned procedure of obtaining “features” from images to develop matches, or correspondences between images. After collecting features from both data images for the mosaic, I calculated the 2 nearest feature matches in the “right” image for each feature in the “left” image. To determine the similarity between features, I calculated the mean squared error between two features. </p><p id="1343b13b-f27a-80ff-aefd-da99c316f9ec" class="">The 2-NN approach allowed me to use Lowe’s trick (comparing the best match to the second best match) to see if a matching feature was really that much better than a rival feature. In particular, I compared the ratio between mean squared errors of the two nearest features against a threshold. Using the ratio information, I was able to see if a correspondence was in fact valid. </p><p id="1343b13b-f27a-80c1-a855-c7ec72ce5379" class="">The results are as follows:</p><div id="1343b13b-f27a-8091-8da8-c7abd8ece280" class="column-list"><div id="1343b13b-f27a-801b-b976-f4a452ce35cc" style="width:50%" class="column"><figure id="1343b13b-f27a-80c5-9ac4-f715fcdc425f" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.41.21_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.41.21_PM.png"/></a><figcaption>correspondences in left image</figcaption></figure></div><div id="1343b13b-f27a-806b-8462-c89442dc619b" style="width:50%" class="column"><figure id="1343b13b-f27a-8095-815d-d297c72e29aa" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.41.31_PM.png"><img style="width:384px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/Screenshot_2024-11-03_at_8.41.31_PM.png"/></a><figcaption>correspondences in right image</figcaption></figure></div></div><h2 id="1343b13b-f27a-8037-a525-caae5cbed069" class="">Part 4</h2><p id="1343b13b-f27a-8007-9eff-d452fff8ba6c" class="">The procedure defined in Part 3 (above) may result in outliers, which can skew/disrupt the transformation of images into clean mosaics. To resolve this, I was tasked with implementing the Random Sample Consensus (RANSAC) method for robust homography calculation.</p><p id="1343b13b-f27a-8083-aeb1-fb94a16878b0" class="">The RANSAC loop consists of four main steps:</p><ol type="1" id="1343b13b-f27a-8083-a326-f21d83ac22d8" class="numbered-list" start="1"><li>Randomly sample 4 pairs of corresponding points (without replacement) from the collection of correspondences</li></ol><ol type="1" id="1343b13b-f27a-80a1-b302-faa7770ac6e1" class="numbered-list" start="2"><li>Compute an exact homography matrix H that transforms the sample points from image 1 onto the sample points from image 2</li></ol><ol type="1" id="1343b13b-f27a-8069-8561-c9440c842392" class="numbered-list" start="3"><li>Apply H matrix from step 2 to all the correspondences. Compute a set of inliers (subset of all correspondences), where the deviations between estimated corresponding points in image 2 and actual corresponding points in image 2 is below a threshold</li></ol><ol type="1" id="1343b13b-f27a-806f-ba08-f951c5d9e6bb" class="numbered-list" start="4"><li>Maintain the largest set of inliers. Compute the least squares estimate of the homography matrix H based on the largest set of inliers. </li></ol><p id="1343b13b-f27a-8004-ac6b-c461b814606e" class="">After acquiring a valid, robust homography matrix H, we can apply the mosaic generation steps outlined in Section A to generate an appropriate mosaic. </p><h2 id="1343b13b-f27a-80ff-955e-ec7487187398" class="">Part 5</h2><p id="1343b13b-f27a-8028-8e8c-e9eef4807adb" class="">This part uses the robust homography H calculated by the method described in Part 4 to generate a complete mosaic. The results are below:</p><p id="1343b13b-f27a-80fc-a3f1-f40f3cb56058" class="">
+</p><p id="1343b13b-f27a-8068-836f-d58b4325afee" class="">Example 1:</p><p id="1343b13b-f27a-8038-98ba-ee7689a63dce" class="">
+</p><figure id="1343b13b-f27a-800e-b44f-c289f89c2d58" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic1%201.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic1%201.jpg"/></a><figcaption>manually generated mosaic</figcaption></figure><figure id="1343b13b-f27a-80d1-96fb-d3b556b65e3e" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/auto_mosaic1.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/auto_mosaic1.jpg"/></a><figcaption>automated mosaic</figcaption></figure><p id="1343b13b-f27a-802e-929a-c9d4ccd6b8fa" class="">Example 2:</p><figure id="1343b13b-f27a-800f-9ecc-f2130ac02a18" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic2%201.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic2%201.jpg"/></a><figcaption>manually generated mosaic (differences in lighting provide the above artistic effect, playing on the mask. There appear to be clouds in the sky, although it is actually clear)</figcaption></figure><figure id="1343b13b-f27a-80b9-9f40-f6b2ea3de6a4" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/auto_mosaic2.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/auto_mosaic2.jpg"/></a><figcaption>automated mosaic (differences in lighting provide the above artistic effect, playing on the mask. There appear to be clouds in the sky, although it is actually clear)</figcaption></figure><p id="1343b13b-f27a-80da-858f-f0dff09ec9dd" class="">Example 3:</p><figure id="1343b13b-f27a-8060-83d6-f7dbdcff77e6" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic3%201.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/mosaic3%201.jpg"/></a><figcaption>manually generated mosaic</figcaption></figure><figure id="1343b13b-f27a-80e3-be51-fd7861d443d2" class="image"><a href="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/auto_mosaic3.jpg"><img style="width:480px" src="CS180%20Project%204%201343b13bf27a809d988cc539ccdc9899/auto_mosaic3.jpg"/></a><figcaption>automated mosaic</figcaption></figure><h2 id="1343b13b-f27a-8094-9e5e-d5e0c2ecfd45" class="">Conclusion</h2><p id="1343b13b-f27a-80fc-8d13-e615ecc7fbb4" class="">The coolest part of this project was the automatic generation of mosaics given any two images with the same center of projection.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
